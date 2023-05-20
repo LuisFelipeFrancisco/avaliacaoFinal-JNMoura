@@ -1,0 +1,13 @@
+CREATE DATABASE Loja;
+
+USE Loja;
+
+CREATE TABLE Veiculos (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Marca VARCHAR(50) NOT NULL,
+    Nome VARCHAR(100) NOT NULL,
+    AnoModelo INT NOT NULL,
+    DataFabricacao DATE NOT NULL,
+    Valor DECIMAL(8,2) NOT NULL,
+    Opcionais VARCHAR(500)
+);
