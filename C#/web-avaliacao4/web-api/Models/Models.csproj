@@ -50,10 +50,6 @@
       <Project>{adbfe8c4-6b46-47e7-988f-3d894cb21656}</Project>
       <Name>Logger</Name>
     </ProjectReference>
-    <ProjectReference Include="..\web-api\web-api.csproj">
-      <Project>{e7631f2c-b716-4c38-b087-cdd1680d73b8}</Project>
-      <Name>web-api</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

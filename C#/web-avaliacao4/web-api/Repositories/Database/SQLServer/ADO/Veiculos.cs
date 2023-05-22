@@ -1,5 +1,4 @@
-﻿using Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
@@ -92,28 +91,83 @@ namespace Repositories.Database.SQLServer.ADO
             return veiculo;
         }
 
-        public void Add(Veiculo entity)
+        public void Add(Models.Veiculo veiculo)
         {
-            throw new NotImplementedException();
+            using (conn)
+            {
+                conn.Open();
+                string commadText = "INSERT INTO Veiculos (Marca, Nome, AnoModelo, DataFabricacao, Valor, Opcionais) VALUES (@Marca, @Nome, @AnoModelo, @DataFabricacao, @Valor, @Opcionais); select convert (int, @@identity) as Id;";
+
+                using (SqlCommand cmd = new SqlCommand(commadText,conn))
+                {
+                    cmd.Parameters.Add(new SqlParameter("@Marca", System.Data.SqlDbType.VarChar)).Value = veiculo.Marca;
+                    cmd.Parameters.Add(new SqlParameter("@Nome", System.Data.SqlDbType.VarChar)).Value = veiculo.Nome;
+                    cmd.Parameters.Add(new SqlParameter("@AnoModelo", System.Data.SqlDbType.Int)).Value = veiculo.AnoModelo;
+                    cmd.Parameters.Add(new SqlParameter("@DataFabricacao", System.Data.SqlDbType.DateTime)).Value = veiculo.DataFabricacao;
+                    cmd.Parameters.Add(new SqlParameter("@Valor", System.Data.SqlDbType.Decimal)).Value = veiculo.Valor;
+                    if (veiculo.Opcionais == null)
+                        cmd.Parameters.Add(new SqlParameter("@Opcionais", System.Data.SqlDbType.VarChar)).Value = DBNull.Value;
+                    else
+                        cmd.Parameters.Add(new SqlParameter("@Opcionais", System.Data.SqlDbType.VarChar)).Value = veiculo.Opcionais;
+
+                    veiculo.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+            Cache.Remove(chaveCache);
         }
 
-        public void Update(int id, Veiculo entity)
+        public int Update(int id, Models.Veiculo veiculo)
         {
-            throw new NotImplementedException();
+            int linhasAfetadas = 0;
+
+            using (conn)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "UPDATE Veiculos SET Marca = @Marca, Nome = @Nome, AnoModelo = @AnoModelo, DataFabricacao = @DataFabricacao, Valor = @Valor, Opcionais = @Opcionais WHERE Id = @Id";
+
+                    cmd.Parameters.Add(new SqlParameter("@Id", System.Data.SqlDbType.Int)).Value = id;
+                    cmd.Parameters.Add(new SqlParameter("@Marca", System.Data.SqlDbType.VarChar)).Value = veiculo.Marca;
+                    cmd.Parameters.Add(new SqlParameter("@Nome", System.Data.SqlDbType.VarChar)).Value = veiculo.Nome;
+                    cmd.Parameters.Add(new SqlParameter("@AnoModelo", System.Data.SqlDbType.Int)).Value = veiculo.AnoModelo;
+                    cmd.Parameters.Add(new SqlParameter("@DataFabricacao", System.Data.SqlDbType.DateTime)).Value = veiculo.DataFabricacao;
+                    cmd.Parameters.Add(new SqlParameter("@Valor", System.Data.SqlDbType.Decimal)).Value = veiculo.Valor;
+                    if (veiculo.Opcionais == null)
+                        cmd.Parameters.Add(new SqlParameter("@Opcionais", System.Data.SqlDbType.VarChar)).Value = DBNull.Value;
+                    else
+                        cmd.Parameters.Add(new SqlParameter("@Opcionais", System.Data.SqlDbType.VarChar)).Value = veiculo.Opcionais;
+
+                    linhasAfetadas = cmd.ExecuteNonQuery();                    
+                }
+            }
+            Cache.Remove(chaveCache);
+
+            return linhasAfetadas;
         }
 
-        public void Delete(int id)
+        public int Delete(int id)
         {
-            throw new NotImplementedException();
+            int linhasAfetadas = 0;
+
+            using (conn)
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "DELETE FROM Veiculos WHERE Id = @Id";
+                    cmd.Parameters.Add(new SqlParameter("@Id", System.Data.SqlDbType.Int)).Value = id;
+
+                    linhasAfetadas = cmd.ExecuteNonQuery();
+                }
+            }
+            Cache.Remove(chaveCache);
+
+            return linhasAfetadas;
         }
     } 
 }
-/*  
-Id (int) (chave primária e auto numeração), 
-Marca (50), 
-Nome (100), 
-AnoModelo (Int), 
-DataFabricacao (Date), 
-Valor (decimal-8,2), 
-Opcionais (500) não obrigatório.
- */
