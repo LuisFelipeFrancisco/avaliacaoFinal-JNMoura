@@ -1,1 +1,37 @@
-<p>veiculo-create works!</p>
+<h1>Inclusão de veiculo</h1>
+<form class="pure-form pure-form-aligned">
+    <div class="pure-control-group">
+        <label for="marca">Marca:</label>
+        <input type="text" id="marca" maxlength="50" name="marca" [(ngModel)]="veiculo.Marca">
+        <span class="pure-form-message-inline">*</span>
+    </div>
+    <div class="pure-control-group">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" maxlength="100" name="nome" [(ngModel)]="veiculo.Nome">
+        <span class="pure-form-message-inline">*</span>
+    </div>
+    <div class="pure-control-group">
+        <label for="anoModelo">Ano Modelo:</label>
+        <input type="number" id="anoModelo" name="anoModelo" [(ngModel)]="veiculo.AnoModelo">
+        <span class="pure-form-message-inline">*</span>
+    </div>
+    <div class="pure-control-group">
+        <label for="dataFabricacao">Data Fabricação:</label>
+        <input type="date" id="dataFabricacao" name="dataFabricacao" [(ngModel)]="veiculo.DataFabricacao">
+        <span class="pure-form-message-inline">*</span>
+    </div>
+    <div class="pure-control-group">
+        <label for="valor">Valor:</label>
+        <input type="number" id="valor" name="valor" [(ngModel)]="veiculo.Valor">
+        <span class="pure-form-message-inline">*</span>
+    </div>
+    <div class="pure-control-group">
+        <label for="opcionais">Opcionais:</label>
+        <input type="text" id="opcionais" maxlength="500" name="opcionais" [(ngModel)]="veiculo.Opcionais">
+    </div>
+    <div class="pure-controls">
+        <button type="button" class="pure-button pure-button-primary" (click)="post()">Incluir</button>
+        <button type="reset" class="pure-button">Limpar</button>
+        <button type="button" class="pure-button" (click)="back()">Voltar</button>
+    </div>
+</form>

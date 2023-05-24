@@ -1,10 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-mensagem-erro404',
   templateUrl: './mensagem-erro404.component.html',
   styleUrls: ['./mensagem-erro404.component.css']
 })
-export class MensagemErro404Component {
+export class MensagemErro404Component implements OnInit {
+
+    constructor() { }
+
+    ngOnInit() {
+    }
 
 }

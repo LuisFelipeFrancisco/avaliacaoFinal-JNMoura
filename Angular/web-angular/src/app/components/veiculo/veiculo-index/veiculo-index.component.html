@@ -1,1 +1,34 @@
-<p>veiculo-index works!</p>
+<h1>Lista de Veiculos</h1>
+<form class="pure-form">
+    <label for="codigo">Id:</label>
+    <input type="text" id="codigoPesquisa" [(ngModel)]="codigoPesquisa" name="codigoPesquisa">
+    <button type="button" (click)="get()" class="pure-button pure-button-primary">Pesquisar</button>
+    <button type="button" (click)="create()" class="pure-button">Novo</button>
+</form>
+<table id="tabelaVeiculos" class="pure-table pure-table-bordered">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Marca</th>
+            <th>Nome</th>
+            <th>Ano Modelo</th>
+            <th>Data Fabricação</th>
+            <th>Valor</th>
+            <th>Opcionais</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="dadostabelaVeiculos">
+        <tr *ngFor="let veiculo of veiculos">
+            <td>{{veiculo.Id}}</td>
+            <td>{{veiculo.Marca}}</td>
+            <td>{{veiculo.Nome}}</td>
+            <td>{{veiculo.AnoModelo}}</td>
+            <td>{{veiculo.DataFabricacao}}</td>
+            <td>{{veiculo.Valor}}</td>
+            <td>{{veiculo.Opcionais}}</td>
+            <td><a class='pure-menu-link cursor' (click)='editar(veiculo.Id)'>Editar</a>
+                <a class='pure-menu-link cursor' (click)='desejaExcluir(veiculo.Id)'>Excluir</a></td>
+        </tr>
+    </tbody>
+</table>
