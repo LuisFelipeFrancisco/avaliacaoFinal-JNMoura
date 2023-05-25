@@ -7,6 +7,7 @@ import { HomeComponent } from './components/home/home.component';
 import { MensagemErro404Component } from './components/mensagem/mensagem-erro404/mensagem-erro404.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     HomeComponent,
     MensagemErro404Component,
-    MenuComponent
+    MenuComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
