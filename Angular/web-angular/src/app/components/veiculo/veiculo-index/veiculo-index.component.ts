@@ -41,6 +41,9 @@ export class VeiculoIndexComponent implements OnInit {
   }
 
   handleResponseVeiculos(veiculos: Veiculo[]): void {
+    veiculos.forEach(veiculo => {
+      veiculo.DataFabricacao = veiculo.DataFabricacao.substring(0, 10); // yyyy-MM-dd
+    });
     this.veiculos = veiculos;
   }
 
@@ -54,6 +57,7 @@ export class VeiculoIndexComponent implements OnInit {
   }
 
   handleResponseVeiculo(veiculo: Veiculo): void {
+    veiculo.DataFabricacao = veiculo.DataFabricacao.substring(0, 10); // yyyy-MM-dd
     this.veiculos.push(veiculo);
   }
 

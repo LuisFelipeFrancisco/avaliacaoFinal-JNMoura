@@ -27,7 +27,7 @@
     </div>
     <div class="pure-control-group">
         <label for="opcionais">Opcionais:</label>
-        <input type="text" id="opcionais" maxlength="500" name="opcionais" [(ngModel)]="veiculo.Opcionais">
+        <textarea rows="5" cols="50" id="opcionais" maxlength="500" name="opcionais" [(ngModel)]="veiculo.Opcionais"></textarea>
     </div>
     <div class="pure-controls">
         <button type="button" class="pure-button pure-button-primary" (click)="post()">Incluir</button>

@@ -1,15 +1,13 @@
 <form class="pure-form pure-form-stacked">
     <fieldset>
         <label for="usuario">Usuario</label>
-        <input type="text" id="usuario" placeholder="Usuario" />
+        <input type="text" id="usuario" name="usuario" [(ngModel)]="usuario.usuario" />
         <span class="pure-form-message">*Campo Obrigatorio</span>
         <label for="senha">Senha</label>
-        <input type="password" id="senha" placeholder="Senha" />
+        <input type="password" id="senha" name="senha" [(ngModel)]="usuario.senha" />
         <span class="pure-form-message">*Campo Obrigatorio</span>
-        <button type="submit" class="pure-button pure-button-primary">Logar</button>
+        <button type="submit" class="pure-button pure-button-primary" (click)="logar(usuario.usuario, usuario.senha)">Logar</button>
         <button type="reset" class="pure-button">Limpar</button>
-        <button type="button" class="pure-button">Sair</button>
-
-
+        <button type="button" class="pure-button" (click)="deslogar()">Deslogar</button>
     </fieldset>
 </form>
